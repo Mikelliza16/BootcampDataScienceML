@@ -63,9 +63,7 @@ SELECT COUNT(*)state FROM customers WHERE country 'USA' GROUP BY state
 
 Ejercicio 08:
 
-SELECT COUNT(*) AS TotalArticulos
-FROM InvoiceLine
-WHERE InvoiceId = 37;
+SELECT COUNT(trackid) FROM Invoice_items WHERE InvoiceId in(37)
 
 
 Ejercicio 09:
@@ -77,41 +75,35 @@ JOIN Artist ON Album.ArtistId = Artist.ArtistId
 WHERE Artist.Name = 'AC/DC';
 
 
-
 Ejercicio 10:
 
-SELECT InvoiceId, COUNT(*) AS TotalArticulos
+SELECT COUNT(*) AS TotalFacturas FROM invoices BY billingcountry;
 
 
 Ejercicio 11:
 
-SELECT BillingCountry, COUNT(*) AS TotalFacturas
+SELECT COUNT(InvoiceId), billingCountry FROM invoices GROUP BY billingcountry
 
 
 Ejercicio 12:
 
-SELECT BillingCountry, COUNT(*) BETWEEN '2009-01-01' AND '2011-12-31'
-
+SELECT strftime('%Y', Invoicedate) AS año, COUNT(InvoiceId) FROM Invoices WHERE año IN ('2009','2011')
 
 
 Ejercicio 13:
 
-SELECT COUNT(*) AS TotalFacturas BETWEEN '2009-01-01' AND '2011-12-31';
-
+SELECT COUNT(Invoicedate) FROM Invoices WHERE Invoicedate BETWEEN '2009-01-01'AND'2011-01-01'
 
 
 Ejercicio 14:
 
-SELECT Country, COUNT(*) AS TotalClientes
-WHERE Country IN ('Spain', 'Brazil')
-
+SELECT Country, COUNT(CustomerId) FROM customers WHERE country IN ('Spain', 'Brazil')
+GROUP BY
 
 
 Ejercicio 15:
 
-SELECT *
-FROM Track
-WHERE Name LIKE 'You';
+SELECT name FROM Track WHERE Name LIKE 'You';
 
 
 
@@ -119,11 +111,9 @@ SEGUNDA PARTE
 
 Ejercicio 01:
 
-SELECT 
-    FirstName || ' ' || LastName AS Cliente,
-    InvoiceId,
-    InvoiceDate,
-    BillingCountry
+SELECT * FROM invoices
+INNER JOIN customers c ON i CustomerId = CustomerId
+WHERE c.COUNTRY
 
 
 Ejercicio 02:
