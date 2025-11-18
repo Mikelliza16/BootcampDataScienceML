@@ -1,0 +1,1 @@
+SELECT crime_scene_report(*)
