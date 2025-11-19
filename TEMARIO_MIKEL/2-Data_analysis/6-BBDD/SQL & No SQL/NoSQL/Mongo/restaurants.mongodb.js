@@ -1,43 +1,32 @@
-/* global use, db */
-// MongoDB Playground
-// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
-// Make sure you are connected to enable completions and to be able to run a playground.
-// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
-// The result of the last command run in a playground is shown on the results panel.
-// By default the first 20 documents will be returned with a cursor.
-// Use 'console.log()' to print to the debug output.
-// For more documentation on playgrounds please refer to
-// https://www.mongodb.com/docs/mongodb-vscode/playgrounds/
+//Ejercicios
+use('taller')
 
-// Select the database to use.
-use('mongodbVSCodePlaygroundDB');
+//Mostrar todos los documentos de la colección restaurantes
+//db.restaurants.find()
 
-// Insert a few documents into the sales collection.
-db.getCollection('sales').insertMany([
-  { 'item': 'abc', 'price': 10, 'quantity': 2, 'date': new Date('2014-03-01T08:00:00Z') },
-  { 'item': 'jkl', 'price': 20, 'quantity': 1, 'date': new Date('2014-03-01T09:00:00Z') },
-  { 'item': 'xyz', 'price': 5, 'quantity': 10, 'date': new Date('2014-03-15T09:00:00Z') },
-  { 'item': 'xyz', 'price': 5, 'quantity': 20, 'date': new Date('2014-04-04T11:21:39.736Z') },
-  { 'item': 'abc', 'price': 10, 'quantity': 10, 'date': new Date('2014-04-04T21:23:13.331Z') },
-  { 'item': 'def', 'price': 7.5, 'quantity': 5, 'date': new Date('2015-06-04T05:08:13Z') },
-  { 'item': 'def', 'price': 7.5, 'quantity': 10, 'date': new Date('2015-09-10T08:43:00Z') },
-  { 'item': 'abc', 'price': 10, 'quantity': 5, 'date': new Date('2016-02-06T20:20:13Z') },
-]);
+//Mostrar los campos restaurant_id, nombre, distrito y cocina, pero excluya el campo _id para todos los documentos de la colección restaurantes
+//db.restaurants.find({},{restaurant_id: 1, nombre: 1, distrito: 1, cocina: 1, _id: 0})
 
-// Run a find command to view items sold on April 4th, 2014.
-const salesOnApril4th = db.getCollection('sales').find({
-  date: { $gte: new Date('2014-04-04'), $lt: new Date('2014-04-05') }
-}).count();
+//Mostrar los primeros 5 restaurantes que se encuentran en el distrito Bronx
+//db.restaurants.find({},{direccion:'Bronx'}).limit(5)
 
-// Print a message to the output window.
-console.log(`${salesOnApril4th} sales occurred in 2014.`);
+//Devolver los restaurantes que lograron una puntuación superior a 80 pero inferior a 100
+db.restaurants.find({score: {$gt: 80, $lt: 100}})
 
-// Here we run an aggregation and open a cursor to the results.
-// Use '.toArray()' to exhaust the cursor to return the whole result set.
-// You can use '.hasNext()/.next()' to iterate through the cursor page by page.
-db.getCollection('sales').aggregate([
-  // Find all of the sales that occurred in 2014.
-  { $match: { date: { $gte: new Date('2014-01-01'), $lt: new Date('2015-01-01') } } },
-  // Group the total sales for each product.
-  { $group: { _id: '$item', totalSaleAmount: { $sum: { $multiply: [ '$price', '$quantity' ] } } } }
-]);
+//Devolver los restaurantes que se ubican en un valor de latitud inferior a -95.754168
+
+
+//Devolver los restaurantes que no preparan cocina americana y lograron una puntuación superior a 70 y se ubicaron en una longitud inferior a -65.754168. Nota: Realice esta consulta sin usar el operador $and
+
+
+//Devolver los restaurantes que no preparan cocina americana y lograron un punto de calificación 'A' que no pertenece al distrito de Brooklyn. El documento debe mostrarse según la cocina en orden descendente.
+//Devolver los restaurantes que pertenecen al distrito Bronx y preparan platos americanos o chinos
+//Devolver ID del restaurante, nombre, distrito y la cocina para aquellos restaurantes que pertenecen al distrito de Staten Island o Queens o Bronx o Brooklyn
+//Devolver ID del restaurante, nombre, distrito y la cocina de aquellos restaurantes que lograron una puntuación que no supere los 10
+//Devolver ID del restaurante, el nombre y las calificaciones del restaurante para aquellos restaurantes que obtuvieron una calificación de "A" y obtuvieron un puntaje de 11 en una fecha ISO "2014-08-11T00: 00: 00Z" entre muchas fechas de encuesta
+//Devolver ID del restaurante, nombre, dirección y ubicación geográfica del restaurante de aquellos donde el segundo elemento de la matriz coord contiene un valor que es más de 42 y hasta 52
+//Crea un par de restaurantes que te gusten. Tendrás que buscar en Google Maps los datos de las coordenadas
+//Actualiza los restaurantes. Cambia el tipo de cocina 'Ice Cream, Gelato, Yogurt, Ices' por 'sweets'
+//Actualiza nombre del restaurante 'Wild Asia' por 'Wild Wild West'
+//Borra los restaurantes con latitud menor que -95.754168
+//Borra los restaurantes cuyo nombre empiece por 'C'
