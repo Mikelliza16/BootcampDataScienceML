@@ -126,7 +126,7 @@ if "messages" not in st.session_state:
 # Si no hay mensajes, mostramos pantalla de bienvenida
 if not st.session_state.messages:
     st.markdown("---")
-    st.subheader("¿A dónde nos vamos hoy?")
+    st.subheader("Sugerencias para empezar tu aventura:")
     
     c1, c2, c3 = st.columns(3)
     with c1:
@@ -164,7 +164,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # 6. INPUT DEL USUARIO
-if prompt := st.chat_input("Escribe tu destino, presupuesto y estilo de viaje..."):
+if prompt := st.chat_input("¿A dónde quieres ir este finde?"):
     
     # Usuario
     st.chat_message("user", avatar="🧑‍🚀").markdown(prompt)
@@ -194,44 +194,3 @@ if prompt := st.chat_input("Escribe tu destino, presupuesto y estilo de viaje...
                 
     except Exception as e:
         st.error(f"⚠️ Error de conexión: {e}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
