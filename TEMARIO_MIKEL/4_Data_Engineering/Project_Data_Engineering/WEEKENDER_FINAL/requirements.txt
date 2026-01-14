@@ -1,9 +1,0 @@
-flask
-requests
-groq
-python-dotenv
-psycopg2-binary
-streamlit
-pytest
-pandas
-scikit-learn
